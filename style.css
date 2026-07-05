@@ -1,0 +1,332 @@
+/* ============================================================
+   Linear Algebra Practice — theme and layout
+   CSS variables with a dark-mode-safe fallback.
+   ============================================================ */
+
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-alt: #f0f2f5;
+  --border: #d9dee5;
+  --text: #1c2430;
+  --text-muted: #5a6472;
+  --accent: #2f6df6;
+  --accent-hover: #245ad6;
+  --accent-contrast: #ffffff;
+  --note-bg: #eef4ff;
+  --note-border: #b9d0ff;
+  --shadow: 0 1px 3px rgba(20, 30, 50, 0.08), 0 4px 16px rgba(20, 30, 50, 0.06);
+  --radius: 12px;
+  --maxw: 760px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10141b;
+    --surface: #171d27;
+    --surface-alt: #1f2733;
+    --border: #2c3644;
+    --text: #e7ecf3;
+    --text-muted: #9aa5b4;
+    --accent: #5b8cff;
+    --accent-hover: #7aa2ff;
+    --accent-contrast: #0b0f16;
+    --note-bg: #172236;
+    --note-border: #2f4a7a;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  line-height: 1.55;
+}
+
+.app {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+/* ---------- Header ---------- */
+
+.app-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+/* ---------- Controls ---------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.control-group label,
+.timer-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+#topic-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.55rem 2.25rem 0.55rem 0.75rem;
+  font-size: 1rem;
+  min-width: 15rem;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%235a6472' d='M6 8 0 0h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
+
+#topic-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.timer-group {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.timer.frozen {
+  color: var(--accent);
+}
+
+/* ---------- Stage ---------- */
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.idle-message {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem 1rem;
+  font-size: 1.05rem;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.6rem;
+  box-shadow: var(--shadow);
+  overflow-x: auto;
+}
+
+.question-panel .question-id {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.question-panel .question-body {
+  font-size: 1.1rem;
+}
+
+/* ---------- Action bar ---------- */
+
+.action-bar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: var(--surface-alt);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+}
+
+.btn[hidden] {
+  display: none;
+}
+
+/* ---------- Solution ---------- */
+
+.solution-panel .solution-heading {
+  font-size: 1.15rem;
+  margin: 0 0 1rem;
+}
+
+.solution-steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.solution-steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.4rem;
+}
+
+.solution-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.solution-steps .step-prose {
+  margin: 0 0 0.4rem;
+}
+
+.solution-steps .step-latex {
+  overflow-x: auto;
+}
+
+.conceptual-note {
+  margin-top: 1.5rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--note-bg);
+  border: 1px solid var(--note-border);
+  border-left-width: 4px;
+  border-radius: 8px;
+  font-style: italic;
+  color: var(--text);
+}
+
+.conceptual-note .note-label {
+  display: block;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+/* ---------- Footer ---------- */
+
+.app-footer {
+  margin-top: 2.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Utilities ---------- */
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 520px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .timer-group {
+    align-items: flex-start;
+    text-align: left;
+  }
+  #topic-select {
+    min-width: 0;
+    width: 100%;
+  }
+}

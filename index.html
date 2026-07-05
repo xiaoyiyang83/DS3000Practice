@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linear Algebra Practice</title>
+
+  <!-- KaTeX from cdnjs, loaded in head so it is ready before the first render -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <script
+    defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Linear Algebra Practice</h1>
+      <p class="subtitle">Pick a topic, draw a question, and work at your own pace.</p>
+    </header>
+
+    <section class="controls" aria-label="Practice controls">
+      <div class="control-group">
+        <label for="topic-select">Topic</label>
+        <select id="topic-select">
+          <option value="" selected>Choose a topic…</option>
+          <option value="matrix_basic">Basic matrix operations</option>
+          <option value="gaussian">Gaussian elimination</option>
+          <option value="subspace">Subspace calculation</option>
+          <option value="eigenvalue">Eigenvalues &amp; diagonalisation</option>
+          <option value="regression">Linear regression</option>
+        </select>
+      </div>
+
+      <div class="control-group timer-group">
+        <span class="timer-label">Time</span>
+        <span id="timer" class="timer" aria-live="off">00:00</span>
+      </div>
+    </section>
+
+    <main class="stage">
+      <!-- Empty / idle state -->
+      <div id="idle-message" class="idle-message">
+        Select a topic above to begin.
+      </div>
+
+      <!-- Question -->
+      <div id="question-panel" class="panel question-panel" hidden></div>
+
+      <!-- Action buttons -->
+      <div id="action-bar" class="action-bar" hidden>
+        <button id="show-solution-btn" type="button" class="btn btn-primary">
+          Show solution
+        </button>
+        <button id="new-question-btn" type="button" class="btn btn-secondary">
+          New question
+        </button>
+      </div>
+
+      <!-- Solution -->
+      <div
+        id="solution-panel"
+        class="panel solution-panel"
+        aria-live="polite"
+        hidden
+      ></div>
+    </main>
+
+    <footer class="app-footer">
+      Supplementary practice only — no grades, no accounts, nothing saved.
+    </footer>
+  </div>
+
+  <script src="renderer.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
