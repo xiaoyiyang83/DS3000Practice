@@ -39,11 +39,21 @@
         <label for="topic-select">Topic</label>
         <select id="topic-select">
           <option value="" selected>Choose a topic…</option>
-          <option value="matrix_basic">Basic matrix operations</option>
-          <option value="gaussian">Gaussian elimination</option>
-          <option value="subspace">Subspace calculation</option>
-          <option value="eigenvalue">Eigenvalues &amp; diagonalisation</option>
-          <option value="regression">Linear regression</option>
+          <optgroup label="Linear algebra">
+            <option value="matrix_basic">Basic matrix operations</option>
+            <option value="gaussian">Gaussian elimination</option>
+            <option value="subspace">Subspace calculation</option>
+            <option value="eigenvalue">Eigenvalues &amp; diagonalisation</option>
+          </optgroup>
+          <optgroup label="Statistics &amp; data">
+            <option value="regression">Linear regression</option>
+            <option value="pca">Principal component analysis (PCA)</option>
+            <option value="expectation_variance">Expectation &amp; variance</option>
+            <option value="conditional_probability">Conditional probability (Bayes)</option>
+          </optgroup>
+          <optgroup label="Matrix calculus">
+            <option value="matrix_derivative">Matrix derivatives</option>
+          </optgroup>
         </select>
       </div>
 
